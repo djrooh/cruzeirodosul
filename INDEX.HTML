@@ -28,7 +28,7 @@
             margin-bottom: 20px;
         }
         img {
-            max-width: 100px;
+            max-width: 150px; /* Aumentando o tamanho da logo */
         }
         label {
             display: block;
@@ -61,20 +61,29 @@
             <input type="text" id="curso" name="curso" placeholder="MBA GESTÃO ESTRATÉGICA DE PESSOAS">
 
             <label for="rgm">RGM:</label>
-            <input type="text" id="rgm" name="rgm" placeholder="02704673-7">
+            <input type="text" id="rgm" name="rgm" placeholder="02704673-7" maxlength="10">
 
             <label for="cpf">CPF:</label>
             <input type="text" id="cpf" name="cpf" placeholder="405.829.268-74">
 
             <label for="validade">Data de Validade:</label>
-            <input type="date" id="validade" name="2025-12-31">
+            <input type="date" id="validade" name="validade" value="2025-12-31" readonly>
         </form>
     </div>
 
     <script>
+        const rgmInput = document.getElementById('rgm');
+
+        rgmInput.addEventListener('input', function() {
+            let value = rgmInput.value.replace(/\D/g, ''); // Remove qualquer caractere que não seja número
+            if (value.length > 8) {
+                value = value.substring(0, 8) + '-' + value.substring(8, 9);
+            }
+            rgmInput.value = value;
+        });
+
         // Adicionar função de visualização da logo
         const logoImg = document.getElementById('logo-img');
-        // Supondo que você tenha o caminho para o arquivo da logo, pode ser alterado dinamicamente ou fixo.
         logoImg.src = 'logo.png'; // Substitua 'logo.png' com o caminho correto da imagem do logo
     </script>
 
